@@ -1,0 +1,383 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;600;900&display=swap");
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --leva-sizes-rootWidth: 340px;
+}
+
+#root {
+  width: 100vw;
+  height: 100vh;
+}
+
+body {
+  margin: 0;
+  background-color: hsl(207, 89%, 82%);
+  background-image: linear-gradient(19deg, hsl(189, 89%, 82%) 0%, #ddd6f3 100%);
+  overflow-x: hidden;
+}
+
+body.greenScreen {
+  background-color: #404440;
+  background-image: none;
+}
+/* In your styles, make sure the dropdown has a high z-index */
+/* Ensure settings dropdown is above everything */
+.settings-dropdown {
+  z-index: 10001;  /* Make sure it's above the canvas */
+  position: absolute;
+  top: 50px;  /* Adjust if necessary */
+  right: 0;
+}
+
+/* Ensure the canvas is behind the dropdown */
+canvas {
+  z-index: 1; /* Lower value to push canvas behind */
+}
+
+.dropdown {
+  pointer-events: auto; /* Ensure the dropdown is clickable */
+}
+/* Add to your global CSS */
+textarea::-webkit-scrollbar {
+  width: 6px;
+}
+textarea::-webkit-scrollbar-thumb {
+  background-color: rgba(0,0,0,0.2);
+  border-radius: 3px;
+}
+.mic-button {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  position: absolute;  /* Ensure it's fixed above text area */
+  top: -80px; /* Adjust to move mic button up or down */
+  transform: translateX(-50%);
+  z-index: 3;  /* Ensure mic button stays above other content */
+}
+
+.mic-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  height: 60px;
+}
+
+.mic-icon-wrapper {
+  position: relative;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+}
+
+.mic-icon {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  transition: transform 0.2s ease;
+}
+
+.mic-button:hover .mic-icon {
+  transform: scale(1.1);
+}
+
+.pulse-effect {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 11, 130, 0.4);
+  border-radius: 50%;
+  z-index: 1;
+  animation: pulse 2s infinite;
+}
+
+.sound-waves {
+  display: flex;
+  align-items: center;
+  height: 30px;
+}
+
+.left-waves {
+  margin-right: 15px;
+  justify-content: flex-end;
+}
+
+.right-waves {
+  margin-left: 15px;
+  justify-content: flex-start;
+}
+
+.wave-bar {
+  width: 3px;
+  height: 8px;
+  background: #002293;
+  border-radius: 3px;
+  margin: 0 2px;
+  animation: wave 1.2s ease-in-out infinite;
+  animation-delay: calc(var(--i) * 0.15s);
+}
+
+.recording-text {
+  color: #002293;
+  font-size: 14px;
+  font-weight: 500;
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(0.8);
+    opacity: 0.8;
+  }
+  70% {
+    transform: scale(1.3);
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes wave {
+  0%, 100% {
+    transform: scaleY(0.6);
+  }
+  50% {
+    transform: scaleY(1.4);
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+/* Add these styles to your existing CSS */
+.app {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: #f5f7fa;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background-color: #6c5ce7;
+  color: white;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.logo {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: white;
+}
+
+.auth-btn {
+  background-color: white;
+  color: #6c5ce7;
+  border: none;
+  padding: 0.6rem 1.2rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.auth-btn:hover {
+  background-color: #f0f0f0;
+}
+
+.main-content {
+  padding: 2rem;
+  flex: 1;
+}
+
+.survey-cards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  justify-content: center;
+}
+
+.survey-card {
+  background: white;
+  border-radius: 12px;
+  padding: 1.5rem;
+  width: 300px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.survey-card:hover {
+  transform: translateY(-5px);
+}
+
+.survey-card h3 {
+  color: #6c5ce7;
+  margin-bottom: 0.5rem;
+  font-size: 1.3rem;
+}
+
+.survey-card p {
+  color: #666;
+  margin-bottom: 1rem;
+  flex: 1;
+}
+
+.survey-btn {
+  background-color: #6c5ce7;
+  color: white;
+  border: none;
+  padding: 0.8rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  width: 100%;
+}
+
+.survey-btn:hover {
+  background-color: #5649c0;
+}
+
+.survey-btn:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
+}
+
+@media (max-width: 768px) {
+  .header {
+    padding: 1rem;
+  }
+
+  .survey-cards {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .survey-card {
+    width: 100%;
+    max-width: 350px;
+  }
+}
+/* Modal Styles */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  width: 300px;
+  position: relative;
+}
+
+.close-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: red;
+  color: white;
+  border: none;
+  padding: 5px;
+  cursor: pointer;
+}
+
+.form-container {
+  text-align: center;
+}
+
+.form-title {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.form-group {
+  margin-bottom: 10px;
+}
+
+label {
+  font-weight: bold;
+}
+
+input {
+  width: 100%;
+  padding: 10px;
+  margin-top: 5px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+button.btn-primary {
+  background-color: #6c63ff;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button.toggle-btn {
+  background: none;
+  color: #6c63ff;
+  border: none;
+  cursor: pointer;
+}
+
+button.toggle-btn:hover {
+  text-decoration: underline;
+}
+
+.google-login-btn {
+  margin-top: 15px;
+}
+
+.google-btn {
+  width: 100%;
+  background-color: #4285f4;
+  color: white;
+  padding: 12px;
+  border-radius: 8px;
+  text-align: center;
+  font-size: 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.google-btn:hover {
+  background-color: #357ae8;
+}
+
+.google-btn img {
+  margin-right: 10px;
+  width: 20px;
+  height: 20px;
+}
