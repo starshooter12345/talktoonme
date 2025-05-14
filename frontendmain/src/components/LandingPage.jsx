@@ -20,7 +20,7 @@ const surveys = [
   },
 ];
 
-const LandingPage = () => {
+const LandingPage = ({ onStartSurvey }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isLoginForm, setIsLoginForm] = useState(true);
 
@@ -45,6 +45,11 @@ const LandingPage = () => {
     console.error("Google Login Error:", error);
   };
 
+  const handleStartSurvey = () => {
+    // Call the onStartSurvey function passed from App.jsx
+    onStartSurvey();
+  };
+
   return (
     <div className="app">
       <header className="header">
@@ -61,7 +66,9 @@ const LandingPage = () => {
               <h3>{survey.title}</h3>
               <p>{survey.description}</p>
               {survey.status === "active" ? (
-                <button className="survey-btn">Start Survey</button>
+                <button className="survey-btn" onClick={handleStartSurvey}>
+                  Start Survey
+                </button>
               ) : (
                 <button className="survey-btn" disabled>
                   Coming Soon
