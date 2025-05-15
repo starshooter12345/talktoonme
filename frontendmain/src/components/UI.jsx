@@ -19,24 +19,7 @@ export const UI = ({ hidden, ...props }) => {
       {/* Right-side floating buttons */}
       <div className="absolute right-4 top-1/2 transform -translate-y-1/2 flex flex-col gap-4 pointer-events-auto">
         {/* Camera Zoom Button (Top) */}
-        <button
-          onClick={() => setCameraZoomed(!cameraZoomed)}
-          className="bg-pink-500 hover:bg-pink-600 text-white p-4 rounded-full shadow-lg transition-all"
-        >
-          {cameraZoomed ? (
-            <ZoomOutIcon />
-          ) : (
-            <ZoomInIcon />
-          )}
-        </button>
-        
-        {/* Green Screen Button (Bottom) */}
-        <button
-          onClick={() => document.body.classList.toggle("greenScreen")}
-          className="bg-pink-500 hover:bg-pink-600 text-white p-4 rounded-full shadow-lg transition-all"
-        >
-          <GreenScreenIcon />
-        </button>
+      
       </div>
 
       {/* Bottom input section */}

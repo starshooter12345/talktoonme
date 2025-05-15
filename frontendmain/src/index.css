@@ -56,25 +56,26 @@ textarea::-webkit-scrollbar-thumb {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 8px;
-  position: absolute;  /* Ensure it's fixed above text area */
-  top: -80px; /* Adjust to move mic button up or down */
-  transform: translateX(-50%);
-  z-index: 3;  /* Ensure mic button stays above other content */
+  gap: 15px;
+  /* REMOVE the following two lines */
+  /* position: absolute; */
+  /* transform: translateX(-50%); */
+  z-index: 3;
 }
+
 
 .mic-container {
   display: flex;
   align-items: center;
   justify-content: center;
   position: relative;
-  height: 60px;
+  height: 80px;
 }
 
 .mic-icon-wrapper {
   position: relative;
-  width: 40px;
-  height: 40px;
+  width: 70px;
+  height: 70px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -109,31 +110,33 @@ textarea::-webkit-scrollbar-thumb {
 }
 
 .left-waves {
-  margin-right: 15px;
+  margin-right: 20px;
   justify-content: flex-end;
 }
 
 .right-waves {
-  margin-left: 15px;
+  margin-left: 20px;
   justify-content: flex-start;
 }
 
 .wave-bar {
-  width: 3px;
-  height: 8px;
+  width: 5px;
+  height: 18px;
   background: #002293;
-  border-radius: 3px;
+  border-radius: 30px;
   margin: 0 2px;
   animation: wave 1.2s ease-in-out infinite;
   animation-delay: calc(var(--i) * 0.15s);
 }
-
 .recording-text {
   color: #002293;
   font-size: 14px;
   font-weight: 500;
+  text-align: center;
   animation: fadeIn 0.3s ease;
 }
+
+
 
 @keyframes pulse {
   0% {

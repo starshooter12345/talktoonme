@@ -1,16 +1,24 @@
 import { useGLTF } from "@react-three/drei";
 import { useState } from "react";
 
+// Emoji icons
+import maleEmoji from '../assets/male-face-emoji.png';
+import femaleEmoji from '../assets/female.png';
+
+// Avatar image placeholders
+import avatar1Image from '../assets/Avatar 1 placeholder.png';
+import avatar2Image from '../assets/Avatar 2 placeholder.png';
+
 export function AvatarSelector({ onSelect }) {
   const [selectedAvatar, setSelectedAvatar] = useState(null);
 
-  // Load both avatar models
+  // Load avatar models
   const avatar1 = useGLTF("/models/6813913d3117d5905d5974dd.glb");
   const avatar2 = useGLTF("/models/67f0f1cd9efcb656d7e370e4.glb");
 
   const avatars = [
-    { name: "Avatar 1", model: avatar1 },
-    { name: "Avatar 2", model: avatar2 }
+    { name: "Avatar 1", model: avatar1, emoji: maleEmoji, image: avatar1Image },
+    { name: "Avatar 2", model: avatar2, emoji: femaleEmoji, image: avatar2Image }
   ];
 
   return (
@@ -35,7 +43,7 @@ export function AvatarSelector({ onSelect }) {
         marginTop: '20px'
       }}>
         {avatars.map((avatar, index) => (
-          <div 
+          <div
             key={index}
             style={{
               padding: '20px',
@@ -46,13 +54,35 @@ export function AvatarSelector({ onSelect }) {
             }}
             onClick={() => setSelectedAvatar(index)}
           >
-            <div style={{ width: '150px', height: '150px', backgroundColor: '#333' }}>
-              <p>{avatar.name}</p>
-            </div>
+            {/* Label with emoji */}
+            <p style={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              gap: '8px',
+              marginBottom: '10px',
+              fontSize: '16px'
+            }}>
+              {avatar.name}
+              <img src={avatar.emoji} alt="emoji" style={{ width: '20px', height: '20px' }} />
+            </p>
+
+            {/* Avatar image */}
+            <img
+              src={avatar.image}
+              alt={avatar.name}
+              style={{
+                width: '150px',
+                height: '150px',
+                objectFit: 'cover',
+                borderRadius: '5px',
+                backgroundColor: '#333'
+              }}
+            />
           </div>
         ))}
       </div>
-      <button 
+      <button
         style={{
           marginTop: '30px',
           padding: '10px 20px',
