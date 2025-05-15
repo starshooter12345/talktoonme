@@ -10,7 +10,8 @@ export const SurveyInput = ({
   loading,
   message,
   sendMessage,
-  isMessageSent
+  isMessageSent,
+  name = "Sarah" // Default to Sarah if no name is provided
 }) => {
   const [micHidden, setMicHidden] = useState(false);
 

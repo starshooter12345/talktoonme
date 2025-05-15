@@ -1,12 +1,11 @@
 import { useRef, useEffect, useState } from "react";
 import { useChat } from "../hooks/useChat";
 import { useSpeechRecognition } from "../hooks/useSpeechRecognition";
-import microphoneIcon from "../assets/mic.png";
 import { SurveyInput } from "./SurveyInput";
 
 export const Header = ({ onSelectAvatar, showLeva, onToggleLeva, hidden }) => {
   const input = useRef();
-  const { chat, loading, cameraZoomed, setCameraZoomed, message } = useChat();
+  const { chat, loading, message } = useChat();
   const {
     text,
     isListening,
@@ -68,6 +67,7 @@ export const Header = ({ onSelectAvatar, showLeva, onToggleLeva, hidden }) => {
     setShowPreferences(false);
     // Apply any preference changes here
   };
+  
 
   if (hidden) return null;
 
